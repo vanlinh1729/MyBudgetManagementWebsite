@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="/Javascripts/redirect.js"></script>
+<script src="/Javascripts/Home/index.js"></script>
+<script src="/Javascripts/UserBalance/index.js"></script>
+
+<!-- Tiêu đề -->
+<h1 class="text-center">My Budget Management</h1>
+
+<!-- Card hiển thị số dư -->
+<div class="card mb-4">
+    <div class="card-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <h5 class="card-title" style="margin-bottom: 0;">Your Wallet</h5>
+        <button class="btn btn-toolbar" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="border: none; background-color: transparent;">
+            <i class="fas fa-chevron-down"></i> <!-- Downward arrow icon -->
+        </button>
+    </div>
+    <div class="collapse show" id="collapseExample">
+        <div class="card-body">
+            <h5 class="card-title">Your balance:</h5>
+            <div class="text-center mb-3">
+                <h3 class="font-weight-bold"><span id="userBalance"></span></h3>
+                <button id="createUserBalanceBtn" style="display: none" class="btn btn-primary"><i class="fas fa-plus"></i> Create User Balance</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Card hiển thị danh mục -->
+<div class="card mb-4">
+    <div class="card-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <h5 class="card-title" style="margin-bottom: 0;">Your categories</h5>
+        <button class="btn btn-toolbar" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories" style="border: none; background-color: transparent;">
+            <i class="fas fa-chevron-down"></i> <!-- Downward arrow icon -->
+        </button>
+    </div>
+    <div class="collapse show" id="collapseCategories">
+        <div class="card-body">
+            <button id="createCategoryBtn" class="btn btn-primary mb-3">
+                <i class="fas fa-plus"></i> Create Category
+            </button>
+            <div class="row" id="categoryGrid">
+                <!-- Các danh mục sẽ được thêm vào đây -->
+            </div>
+        </div>
+        </div>
+</div>
+
+<!-- Card hiển thị giao dịch -->
+<div class="card mb-4">
+    <div class="card-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <h5 class="card-title" style="margin-bottom: 0;">Your transactions</h5>
+        <button class="btn btn-toolbar" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTransactions" aria-expanded="false" aria-controls="collapseTransactions" style="border: none; background-color: transparent;">
+            <i class="fas fa-chevron-down"></i> <!-- Downward arrow icon -->
+        </button>
+    </div>
+    <div class="collaps show" id="collapseTransactions">
+    <div class="card-body">
+        <button id="createTransactionBtn" class="btn btn-primary mb-3">
+            <i class="fas fa-plus"></i> Create Transaction
+        </button>
+        <div class="table-responsive">
+            <table id="transactionTable" class="table table-bordered" style="width:100%"></table>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sử dụng Partial View -->
+@Html.Partial("CreateOrUpdateUserBalanceModal")
+@Html.Partial("CreateOrUpdateTransactionModal")
+@Html.Partial("CreateOrUpdateCategoryModal")

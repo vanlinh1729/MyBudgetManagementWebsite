@@ -1,0 +1,36 @@
+﻿@model MyBudgetManagement.Models.User
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Login Page";
+}
+<script src="/Javascripts/Login/index.js"></script>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 bg-light p-5 rounded">
+                <div class="text-center mb-4">
+                    <img class="mb-4" src="/images/penguin-logo.png" alt="Penguin Logo" width="140" height="100">
+                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                </div>
+
+                <div class="form-floating mb-3" aria-autocomplete="none">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" autofocus="true">
+                    <label>Email address</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control"  id="inputPassword" placeholder="Password">
+                    <label>Password</label>
+                </div>
+
+                @*<div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" disabled="disabled" value="remember-me"> Remember me
+                    </label>
+                </div>*@
+
+                <button class="w-100 btn btn-lg btn-primary mb-3" id="LoginButton">Sign in</button>
+                <a class="btn btn-lg btn-outline-primary w-100" href="/login/register">Sign up</a>
+                <p class="mt-5 mb-3 text-muted text-center">© 2024</p>
+        </div>
+    </div>
+</div>

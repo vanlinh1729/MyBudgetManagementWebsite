@@ -1,0 +1,43 @@
+﻿@model MyBudgetManagement.Models.User
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Register Page";
+}
+
+<script src="/Javascripts/Register/index.js"></script>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Điều chỉnh kích thước form cho màn hình lớn và trung bình -->
+                <div class="text-center mb-4">
+                    <img class="mb-4" src="/images/penguin-logo.png" alt="" width="140" height="100">
+                    <h1 class="h3 mb-3 fw-normal">Register</h1>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="firstNameInput" placeholder="FirstName" autofocus="true">
+                    <label>First Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" id="lastNameInput" class="form-control" placeholder="LastName">
+                    <label>Last Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" id="emailInput" class="form-control" placeholder="name@example.com">
+                    <label>Email address</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" id="passwordInput" class="form-control" placeholder="Password">
+                    <label>Password</label>
+                </div>
+            
+
+            <a href="" class="dev">download</a>
+            <button class="w-100 btn btn-lg btn-primary" id="btnSignUp">Sign up</button>
+
+                <p class="mt-5 mb-3 text-muted text-center">© 2024</p>
+        </div>
+    </div>
+</div>

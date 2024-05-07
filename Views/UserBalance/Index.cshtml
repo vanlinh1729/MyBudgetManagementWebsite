@@ -1,0 +1,23 @@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+<script src="/Javascripts/redirect.js"></script>
+<script src="Javascripts/UserBalance/index.js"></script>
+<h1>Wallet</h1>
+
+<div class="card" style="width: 300px; margin: 20px auto; border: 2px solid #007bff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <h5 class="card-header" style="background-color: #007bff; color: #fff; border-bottom: none; border-top-left-radius: 10px; border-top-right-radius: 10px;">Your Wallet</h5>
+  <div class="card-body" style="padding: 20px;">
+    <h5 class="card-title" style="margin-bottom: 20px;">Your balance:</h5>
+    <div class="text-center mb-3">
+      <h3 class="font-weight-bold"><span id="userBalance"></span></h3>
+      <button id="createUserBalanceBtn" style="display: none; margin: auto;" class="btn btn-primary">Create User Balance</button>
+    </div>
+  </div>
+</div>
+
+<!-- Sử dụng Partial View -->
+@Html.Partial("CreateOrUpdateUserBalanceModal")

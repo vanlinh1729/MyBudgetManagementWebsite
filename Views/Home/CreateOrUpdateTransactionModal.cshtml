@@ -1,0 +1,48 @@
+<!-- Create Transaction Modal -->
+<div class="modal fade" id="createTransactionModal" tabindex="-1" role="dialog" aria-labelledby="createTransactionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTransactionTitle">Create Transaction</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="categorySelect" class="form-label">Category</label>
+                        <select id="categorySelect" class="form-select">
+                            <option value=@Guid.Empty>No Option</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="titleInput" class="form-label">Title</label>
+                        <input type="text" id="titleInput" class="form-control" placeholder="Enter transaction title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="amountInput" class="form-label">Amount</label>
+                        <input type="number" id="amountInput" class="form-control" placeholder="Enter transaction amount">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descriptionInput" class="form-label">Description</label>
+                        <input type="text" id="descriptionInput" class="form-control" placeholder="Enter transaction description">
+                    </div>
+                    <div class="mb-3" id="typeDiv">
+                        <label for="typeInput" class="form-label">Type</label>
+                        <select id="typeInput" class="form-select">
+                            <option value="0">Income</option>
+                            <option value="1">Outcome</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateInput" class="form-label">Date</label>
+                        <input type="datetime-local" id="dateInput" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="createTransaction" type="button" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
