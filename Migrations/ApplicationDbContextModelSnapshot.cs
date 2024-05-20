@@ -22,6 +22,38 @@ namespace MyBudgetManagement.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("MyBudgetManagement.Models.AccountProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Age")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Avatar")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("AccountProfiles");
+                });
+
             modelBuilder.Entity("MyBudgetManagement.Models.Categories.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -168,6 +200,15 @@ namespace MyBudgetManagement.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("MyBudgetManagement.Models.AccountProfile", b =>
+                {
+                    b.HasOne("MyBudgetManagement.Models.User", null)
+                        .WithOne("AccountProfile")
+                        .HasForeignKey("MyBudgetManagement.Models.AccountProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MyBudgetManagement.Models.Categories.Category", b =>
                 {
                     b.HasOne("MyBudgetManagement.Models.User", "User")
@@ -236,6 +277,9 @@ namespace MyBudgetManagement.Migrations
 
             modelBuilder.Entity("MyBudgetManagement.Models.User", b =>
                 {
+                    b.Navigation("AccountProfile")
+                        .IsRequired();
+
                     b.Navigation("Categories");
 
                     b.Navigation("Transactions");

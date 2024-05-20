@@ -1,6 +1,7 @@
 using AutoMapper;
 using AutoMapper.Internal.Mappers;
 using MyBudgetManagement.Dtos;
+using MyBudgetManagement.Dtos.AccountProfiles;
 using MyBudgetManagement.Dtos.Categories;
 using MyBudgetManagement.Dtos.Transactions;
 using MyBudgetManagement.Dtos.UserBalances;
@@ -22,6 +23,7 @@ public class MappingProfile : Profile
         CreateMap<UserDto, User>();
         CreateMap<RegisterViewModel, User>();
         CreateMap<UserBalance, UserBalanceDto>();
+        CreateMap<AccountProfile, AccountProFileViewDto>();
         CreateMap<Category, CategoryDto>();
         CreateMap<Transaction, TransactionDto>();
         CreateMap<Task<Transaction>, Task<TransactionDto>>();

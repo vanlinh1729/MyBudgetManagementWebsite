@@ -11,6 +11,7 @@ public class User
     public string Password { get; set; }
     public ICollection<Transaction> Transactions { get; set; }
     public UserBalance UserBalance { get; set; }
+    public AccountProfile AccountProfile { get; set; }
     public ICollection<UserRole> UserRoles { get; set; }
     public ICollection<Category>? Categories { get; set; }
 

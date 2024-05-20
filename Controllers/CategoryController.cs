@@ -57,8 +57,18 @@ public class CategoryController : ControllerBase
             UserId = currentUId,
             UserBalanceId = currentUserBalanceId
         };
-        var cateDto = await _categoryAppService.CreateCategoryAsync(category);
-       return Ok(cateDto);
+        var totalBudget = _categoryAppService.GetListCategoryAsync().Result.Select(x => x.Budget).Sum();
+        var availableUserBalance = _userBalanceAppService.GetUserBalance().Balance - totalBudget;
+        //kiem tra neu userbalance >= cat.budget thi cho tao, khong thi k tao
+        if (availableUserBalance >= categoryviewmodel.Budget)
+        {
+            var cateDto = await _categoryAppService.CreateCategoryAsync(category);
+            return Ok(cateDto);
+        }
+        else
+        {
+            return StatusCode(500,"Tạo category lỗi: Budget phải nhỏ hơn hoặc bằng số dư còn lại của UserBalance ($ "+ (int)availableUserBalance+")!");
+        }
     }
     
 }

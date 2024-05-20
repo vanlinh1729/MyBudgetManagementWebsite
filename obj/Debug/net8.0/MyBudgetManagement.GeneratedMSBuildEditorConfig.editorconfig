@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Admin/Desktop/MyBudgetManagement/MyBudgetManagement/Views/AccountProfile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFByb2ZpbGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Desktop/MyBudgetManagement/MyBudgetManagement/Views/Home/CreateOrUpdateCategoryModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVPclVwZGF0ZUNhdGVnb3J5TW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,8 +38,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVPclVwZGF0ZVRyYW5zYWN0aW9uTW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/Desktop/MyBudgetManagement/MyBudgetManagement/Views/Home/CreateOrUpdateUserBalanceModal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVPclVwZGF0ZVVzZXJCYWxhbmNlTW9kYWwuY3NodG1s
+[C:/Users/Admin/Desktop/MyBudgetManagement/MyBudgetManagement/Views/Home/CreateUserBalanceModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVVc2VyQmFsYW5jZU1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Desktop/MyBudgetManagement/MyBudgetManagement/Views/Home/Index.cshtml]

@@ -4,12 +4,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MyBudgetManagement.AppService.AuthSevice;
+using MyBudgetManagement.AppService.TransactionAppService;
 using MyBudgetManagement.AppService.UserAppService;
 using MyBudgetManagement.AppService.UserBalanceAppService;
+using MyBudgetManagement.AppServices.AccountProfile;
 using MyBudgetManagement.Dtos.UserBalances;
 using MyBudgetManagement.Dtos.Users;
 using MyBudgetManagement.Models;
 using MyBudgetManagement.Repositories.Applications;
+using MyBudgetManagement.Shared.AccountProfiles;
+using MyBudgetManagement.Shared.Transactions;
 using MyBudgetManagement.ViewModels.Login;
 using MyBudgetManagement.ViewModels.UserBalances;
 using Role = MyBudgetManagement.Shared.Users.Role;
@@ -22,21 +26,25 @@ public class UsersController : ControllerBase
 {
     private readonly IUserAppService _userAppService;
     private readonly IUserBalanceAppService _userBalanceAppService;
+    private readonly ITransactionAppService _transactionAppService;
     private readonly IApplicationRepository _applicationRepository;
+    private readonly IAccountProfileAppService _accountProfileAppService;
     private readonly IConfiguration _configuration;
     private readonly JwtProvider _jwtProvider;
     private readonly IMapper _mapper;
 
-    public UsersController(IMapper mapper,IUserAppService userAppService,IApplicationRepository applicationRepository, IConfiguration configuration,JwtProvider jwtProvider, IUserBalanceAppService userBalanceAppService)
+    public UsersController(IUserAppService userAppService, IUserBalanceAppService userBalanceAppService, ITransactionAppService transactionAppService, IApplicationRepository applicationRepository, IAccountProfileAppService accountProfileAppService, IConfiguration configuration, JwtProvider jwtProvider, IMapper mapper)
     {
         _userAppService = userAppService;
+        _userBalanceAppService = userBalanceAppService;
+        _transactionAppService = transactionAppService;
         _applicationRepository = applicationRepository;
+        _accountProfileAppService = accountProfileAppService;
         _configuration = configuration;
         _jwtProvider = jwtProvider;
-        _userBalanceAppService = userBalanceAppService;
         _mapper = mapper;
     }
-    
+
 
     [HttpGet("{id}")]
     public async Task<ActionResult<UserDto>> GetUserById(Guid id)
@@ -74,7 +82,19 @@ public class UsersController : ControllerBase
         {
             // Mapping dữ liệu từ ViewModel sang UserBalanceDto
             var userBalance = _mapper.Map<UserBalance>(model);
+            var innitBalance = userBalance.Balance;
+            userBalance.Balance = 0;
             var createdUserBalance = _userBalanceAppService.CreateOrUpdateUserBalance(userBalance);
+            var addWalletTransaction = _transactionAppService.CreateTransaction(new Transaction()
+            {
+                Amount = innitBalance,
+                Date = DateTime.Now,
+                Description = "Init balance",
+                Id = Guid.NewGuid(),
+                Title = "Add wallet",
+                Type = TransactionType.Income,
+                UserId = userBalance.UserId
+            });
             var userBalanceDto = _mapper.Map<UserBalanceDto>(createdUserBalance);
 
             // Kiểm tra nếu Id của UserBalanceDto trả về từ dịch vụ là rỗng
@@ -116,10 +136,22 @@ public class UsersController : ControllerBase
     {
         var userDto = _mapper.Map<User>(model);
         var user = await _userAppService.RegisterAccount(userDto);
+        var accountprofile = await _accountProfileAppService.CreateAccountProfileAsync(new AccountProfile()
+        {
+            Id = Guid.NewGuid(),
+            Address = null,
+            Age = null,
+            Avatar = null,
+            Currency = Currencies.Dollar,
+            Gender = Gender.Others,
+            UserId = user.Id
+        });
+        
         if (user.Id != Guid.Empty && _userAppService.GetUserByEmail(model.Email).Result.Id != Guid.Empty)
         {
+            
             return Ok(user);
         }
-        return BadRequest(new { Message = "Email này đã có người sử dụng, vui lòng thử email khác để đăng kí" });
+        return BadRequest(new { Message = "Email này đã có người sử dụng, vui lòng sử dụng email khác để đăng kí" });
     }
 }

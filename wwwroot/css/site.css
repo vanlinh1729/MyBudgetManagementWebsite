@@ -8,6 +8,34 @@ html {
   75% { transform: translateX(-3px); }
   100% { transform: translateX(3px); }
 }
+.toast-success {
+  background-color: #51a351 !important; /* Custom green background */
+  color: white !important; /* Custom text color */
+}
+
+.toast-error {
+  background-color: #bd362f !important; /* Custom red background */
+  color: white !important; /* Custom text color */
+}
+
+.toast-info {
+  background-color: #2f96b4 !important; /* Custom blue background */
+  color: white !important; /* Custom text color */
+}
+
+.toast-warning {
+  background-color: #f89406 !important; /* Custom orange background */
+  color: white !important; /* Custom text color */
+}
+
+.toast-title {
+  font-weight: bold;
+}
+
+.toast-message {
+  font-size: 16px;
+}
+
 
 .card-vibrate {
   animation: vibration 0.8s ease-in-out;

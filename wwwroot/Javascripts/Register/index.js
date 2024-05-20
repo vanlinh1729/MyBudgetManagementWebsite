@@ -40,7 +40,7 @@ $(document).ready(function() {
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu có
-                    console.error("Register error:", xhr.responseJSON.message);
+                    console.log("Register error:", xhr.responseJSON.message);
                     toastr.options = {"positionClass": "toast-bottom-right", "timeOut": 3000};
                     toastr.error(xhr.responseJSON.message);
                 }
@@ -48,6 +48,8 @@ $(document).ready(function() {
         } else {
             // Hiển thị thông báo lỗi nếu email hoặc password trống
             toastr.options = {"positionClass": "toast-bottom-right"};
+            console.log("Hãy điền đầy đủ các trường thông tin để đăng kí.");
+
             toastr.error("Hãy điền đầy đủ các trường thông tin để đăng kí.");
 /*            alert("Please enter email and password...");*/
         }

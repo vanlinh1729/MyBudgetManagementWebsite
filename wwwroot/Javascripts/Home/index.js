@@ -33,6 +33,9 @@ $(document).ready(function () {
         updateUI(); // Update UI
         // Perform any additional logout actions if needed
         window.location.href = "/login";
+    });  
+    $("#logoutATag").click(function () {
+        $("#logoutButton").click();
     });
     /*
         $.ajax({
@@ -260,9 +263,14 @@ $(document).ready(function () {
                 },
                 error: function(xhr, status, error) {
                     // Xử lý lỗi nếu có
-                    console.error("Tạo category lỗi:", xhr.responseJSON.message);
-                    toastr.options = {"positionClass": "toast-bottom-right", "timeOut": 3000};
-                    toastr.error(xhr.responseJSON.message);
+                    if(xhr.status === 500) {
+                        toastr.options = {"positionClass": "toast-bottom-right", "timeOut": 3000};
+                        toastr.error(xhr.responseText);
+                    } else {
+                        console.log('Đã xảy ra lỗi: ' + xhr.responseJSON.message);
+                        toastr.options = {"positionClass": "toast-bottom-right", "timeOut": 3000};
+                        toastr.error("Tạo category lỗi:", xhr.responseJSON.message);
+                    }
                 }
             })
             
