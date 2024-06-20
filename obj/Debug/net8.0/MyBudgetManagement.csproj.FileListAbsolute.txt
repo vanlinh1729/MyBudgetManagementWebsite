@@ -267,3 +267,6 @@ C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\ru
 C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\obj\Debug\net8.0\MyBudgetManagement.sourcelink.json
 C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\MailKit.dll
+C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\MimeKit.dll

@@ -28,6 +28,7 @@ public class AccountProfileAppService : IAccountProfileAppService
        var accountProfile =await  _accountProfileRepository.GetAccountProfileByUserId(userId);
        var accountProfileDto = _mapper.Map<AccountProFileViewDto>(accountProfile);
        accountProfileDto.FirstName = _current.GetCurrentUserModel().Result.FirstName;
+       accountProfileDto.Email = _current.GetCurrentUserModel().Result.Email;
        accountProfileDto.LastName = _current.GetCurrentUserModel().Result.LastName;
        return accountProfileDto;
     }
@@ -36,5 +37,10 @@ public class AccountProfileAppService : IAccountProfileAppService
     {
         var accountprofile = await _accountProfileRepository.CreateAccountProfile(accountProfile);
         return _mapper.Map<AccountProFileViewDto>(accountProfile);
+    }
+
+    public Task<AccountProFileViewDto> UpdateAccountProfileAsync(AccountProfileDto accountProfile)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -6,4 +6,5 @@ public interface IAccountProfileAppService
 {
     Task<AccountProFileViewDto> GetAccountProfileDtoAsync();
     Task<AccountProFileViewDto> CreateAccountProfileAsync(Models.AccountProfile accountProfile);
+    Task<AccountProFileViewDto> UpdateAccountProfileAsync(AccountProfileDto accountProfile);
 }

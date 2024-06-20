@@ -50,7 +50,7 @@ public class TransationRepository : ITransactionRepository
         {
             transaction.CategoryId = null;
             transaction.User = _context.Users.SingleOrDefault(x => x.Id == transaction.UserId);
-        } 
+        }
         _context.Transactions.Add(transaction);
 
         var userBalance = _context.UserBalances.SingleOrDefault(x => x.Id == _userBalanceAppService.GetUserBalance().Id);

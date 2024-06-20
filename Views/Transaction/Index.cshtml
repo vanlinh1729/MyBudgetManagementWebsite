@@ -1,10 +1,32 @@
 @{
-    ViewData["Title"] = "Transaction Page";
+    ViewData["Title"] = "Transaction";
 }
-<script src="lib/jquery/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+
 <script src="/Javascripts/redirect.js"></script>
+<script src="/Javascripts/Home/index.js"></script>
 
-<script src="Javascripts/Transaction/index.js"></script>
+<!-- Tiêu đề -->
+<h1 class="text-center">Transactions</h1>
 
-<h1>Transactions</h1>
+<!-- Card hiển thị giao dịch -->
+<div class="card mb-4">
+    <div class="card-header" style="display: flex; align-items: center; justify-content: space-between;">
+        <h5 class="card-title" style="margin-bottom: 0;">Your transactions</h5>
+        <button class="btn btn-toolbar" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTransactions" aria-expanded="false" aria-controls="collapseTransactions" style="border: none; background-color: transparent;">
+            <i class="fas fa-chevron-down"></i> <!-- Downward arrow icon -->
+        </button>
+    </div>
+    <div class="collapse show" id="collapseTransactions">
+        <div class="card-body">
+            <button id="createTransactionBtn" class="btn btn-primary mb-3">
+                <i class="fas fa-plus"></i> Create Transaction
+            </button>
+            <div class="table-responsive">
+                <table id="transactionTable" class="table table-bordered" style="width:100%"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sử dụng Partial View -->
+@Html.Partial("CreateOrUpdateTransactionModal")

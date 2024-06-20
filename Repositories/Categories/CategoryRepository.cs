@@ -37,6 +37,11 @@ namespace MyBudgetManagement.Repositories.Categories
             return categories;
         }
 
+        public async Task<Category> GetCategoryByIdAsync(Guid id)
+        {
+            return await _context.Category.FirstOrDefaultAsync(x=>x.Id == id);
+        }
+
         public async Task<int> CreateCategoriesAsync(Category category)
         {
             try

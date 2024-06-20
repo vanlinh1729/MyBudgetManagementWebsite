@@ -31,14 +31,14 @@ namespace MyBudgetManagement.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Age")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Currency")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");

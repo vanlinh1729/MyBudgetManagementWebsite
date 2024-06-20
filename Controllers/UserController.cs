@@ -136,19 +136,19 @@ public class UsersController : ControllerBase
     {
         var userDto = _mapper.Map<User>(model);
         var user = await _userAppService.RegisterAccount(userDto);
-        var accountprofile = await _accountProfileAppService.CreateAccountProfileAsync(new AccountProfile()
-        {
-            Id = Guid.NewGuid(),
-            Address = null,
-            Age = null,
-            Avatar = null,
-            Currency = Currencies.Dollar,
-            Gender = Gender.Others,
-            UserId = user.Id
-        });
-        
+       
         if (user.Id != Guid.Empty && _userAppService.GetUserByEmail(model.Email).Result.Id != Guid.Empty)
         {
+            var accountprofile = await _accountProfileAppService.CreateAccountProfileAsync(new AccountProfile()
+            {
+                Id = Guid.NewGuid(),
+                Address = null,
+                DateOfBirth = DateTime.Now,
+                Avatar = null,
+                Currency = Currencies.USD,
+                Gender = Gender.Others,
+                UserId = user.Id
+            });
             
             return Ok(user);
         }

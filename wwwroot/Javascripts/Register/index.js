@@ -18,7 +18,7 @@ $(document).ready(function() {
                 toastr.error("Email không hợp lệ.");
                 return; // Dừng việc gửi yêu cầu nếu email không hợp lệ
             }
-            // Gửi yêu cầu đăng nhập đến server
+            // Gửi yêu cầu đăng kí đến server
             $.ajax({
                 type: "POST",
                 url: "/api/user/register",

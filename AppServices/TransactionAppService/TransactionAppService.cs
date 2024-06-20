@@ -76,7 +76,6 @@ public class TransactionAppService : ITransactionAppService
             }
         }
 
-        // Trả về null hoặc throw một ngoại lệ tùy thuộc vào logic của bạn
         throw new Exception("Unauthorized");
     }
 }
