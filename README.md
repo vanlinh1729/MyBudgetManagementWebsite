@@ -3,7 +3,7 @@
 # My Budget Management
 
 Welcome to My Budget Management! This web application is designed to help you efficiently manage your personal finances.
-In this project, I implement 
+In this project, I will implement authentication, authorization using JWT, automatic email sending, cronjob... new features are still in development.
 
 ## Website
 Visit the live application: [My Budget Management](https://mybudgetmanagement.nguyenvanlinh.io.vn/)
