@@ -1,4 +1,6 @@
 using System.Text;
+using Hangfire;
+using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -41,6 +43,34 @@ try
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("SQLConnectionString")));
 
+    
+    // Add Hangfire services.
+    builder.Services.AddHangfire(configuration => configuration
+        .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+        .UseSimpleAssemblyNameTypeSerializer()
+        .UseDefaultTypeSerializer()
+        .UseSqlServerStorage(builder.Configuration.GetConnectionString("SQLConnectionString"), new SqlServerStorageOptions
+        {
+            CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+            QueuePollInterval = TimeSpan.Zero,
+            UseRecommendedIsolationLevel = true,
+            UsePageLocksOnDequeue = true,
+            DisableGlobalLocks = true
+        }));
+    // Register MailService
+    builder.Services.AddTransient<MailService>(provider => new MailService(
+        builder.Configuration["EmailSettings:SmtpServer"],
+        int.Parse(builder.Configuration["EmailSettings:Port"]),
+        builder.Configuration["EmailSettings:Username"],
+        builder.Configuration["EmailSettings:Password"],
+        bool.Parse(builder.Configuration["EmailSettings:EnableSsl"])
+    ));
+
+
+    // Add the processing server as IHostedService
+    builder.Services.AddHangfireServer();
+
     //Add Jwt bearer authentication
     builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
@@ -68,6 +98,7 @@ try
     // Retrieve the instance of DataSeeder from the service provider
     var scope = app.Services.CreateScope();
     var dataSeeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+
     dataSeeder.Seed(); // Seed data
     app.UseHttpsRedirection();
     app.UseStaticFiles();
@@ -82,6 +113,10 @@ try
     app.UseAuthentication();
     app.UseMiddleware<ValidateTokenMiddleware>();
     app.UseAuthorization();
+    // Add Hangfire Dashboard
+    app.UseHangfireDashboard();
+    RecurringJob.AddOrUpdate<UserAppService>(service => service.EverydayMailing(), Cron.Daily(23, 17), TimeZoneInfo.Utc);
+
     app.UseEndpoints(endpoints =>
     {
         endpoints.MapControllerRoute("default",

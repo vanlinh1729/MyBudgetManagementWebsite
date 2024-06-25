@@ -6,6 +6,7 @@ namespace MyBudgetManagement.AppService.UserAppService;
 public interface IUserAppService
 {
     Task<UserDto> GetUserById(Guid id);
+    Task<List<UserDto>> GetAllUser();
     Task<bool> IsAuthenticated(string email, string password);
     Task<UserDto> RegisterAccount(User userModel);
     Task<UserDto> GetUserByEmail(string email);

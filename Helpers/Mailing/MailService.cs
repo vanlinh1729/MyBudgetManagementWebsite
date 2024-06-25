@@ -1,16 +1,15 @@
-using System;
 using MimeKit;
 using MailKit.Net.Smtp;
 
 public class MailService
 {
-    private string _smtpServer;
-    private int _port;
-    private string _username;
-    private string _password;
-    private bool _enableSsl;
+    private readonly string _smtpServer;
+    private readonly int _port;
+    private readonly string _username;
+    private readonly string _password;
+    private readonly bool _enableSsl;
 
-    public MailService(string smtpServer, int port, string username, string password, bool enableSsl = true)
+    public MailService(string smtpServer, int port, string username, string password, bool enableSsl)
     {
         _smtpServer = smtpServer;
         _port = port;
@@ -18,6 +17,7 @@ public class MailService
         _password = password;
         _enableSsl = enableSsl;
     }
+
     public void SendEmail(string fromName, string fromEmail, string toName, string toEmail, string subject, string body, bool isBodyHtml = false)
     {
         try

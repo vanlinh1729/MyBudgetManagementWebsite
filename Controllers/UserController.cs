@@ -32,8 +32,10 @@ public class UsersController : ControllerBase
     private readonly IConfiguration _configuration;
     private readonly JwtProvider _jwtProvider;
     private readonly IMapper _mapper;
+    private readonly MailService _mailService;
 
-    public UsersController(IUserAppService userAppService, IUserBalanceAppService userBalanceAppService, ITransactionAppService transactionAppService, IApplicationRepository applicationRepository, IAccountProfileAppService accountProfileAppService, IConfiguration configuration, JwtProvider jwtProvider, IMapper mapper)
+
+    public UsersController(IUserAppService userAppService, IUserBalanceAppService userBalanceAppService, ITransactionAppService transactionAppService, IApplicationRepository applicationRepository, IAccountProfileAppService accountProfileAppService, IConfiguration configuration, JwtProvider jwtProvider, IMapper mapper, MailService mailService)
     {
         _userAppService = userAppService;
         _userBalanceAppService = userBalanceAppService;
@@ -43,8 +45,8 @@ public class UsersController : ControllerBase
         _configuration = configuration;
         _jwtProvider = jwtProvider;
         _mapper = mapper;
+        _mailService = mailService;
     }
-
 
     [HttpGet("{id}")]
     public async Task<ActionResult<UserDto>> GetUserById(Guid id)
@@ -129,7 +131,8 @@ public class UsersController : ControllerBase
         }
 
         return Unauthorized();
-    }
+    } 
+    
     
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterViewModel model)

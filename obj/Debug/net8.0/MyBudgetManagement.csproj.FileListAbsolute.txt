@@ -270,3 +270,7 @@ C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\Mi
 C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\MailKit.dll
 C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\MimeKit.dll
+C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\Hangfire.AspNetCore.dll
+C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\Hangfire.Core.dll
+C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\Hangfire.NetCore.dll
+C:\Users\Admin\Desktop\MyBudgetManagement\MyBudgetManagement\bin\Debug\net8.0\Hangfire.SqlServer.dll

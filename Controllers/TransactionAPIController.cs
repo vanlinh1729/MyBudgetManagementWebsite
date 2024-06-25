@@ -1,4 +1,5 @@
 using AutoMapper;
+using Hangfire;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBudgetManagement.AppService.MD5Service;
@@ -17,16 +18,16 @@ namespace MyBudgetManagement.Controllers;
 public class TransactionAPIController : ControllerBase
 {
     private readonly ITransactionRepository _transactionRepository;
+    private readonly MailService _mailService;
     private readonly ITransactionAppService _transactionAppService;
     private readonly ICategoryRepository _categoryRepository;
     private readonly GetCurrentUser _current;
     private readonly IMapper _mapper;
 
-    public TransactionAPIController(ITransactionRepository transactionRepository,
-        ITransactionAppService transactionAppService, ICategoryRepository categoryRepository, GetCurrentUser current,
-        IMapper mapper)
+    public TransactionAPIController(ITransactionRepository transactionRepository, MailService mailService, ITransactionAppService transactionAppService, ICategoryRepository categoryRepository, GetCurrentUser current, IMapper mapper)
     {
         _transactionRepository = transactionRepository;
+        _mailService = mailService;
         _transactionAppService = transactionAppService;
         _categoryRepository = categoryRepository;
         _current = current;
@@ -60,7 +61,6 @@ public class TransactionAPIController : ControllerBase
                 var password = "dnbklsyltyscqial";
                 var enableSsl = true;
 
-                var mailService = new MailService(smtpServer, port, username, password, enableSsl);
 
                 var fromName = "My Budget Management";
                 var fromEmail = "searchm5v@gmail.com";
@@ -150,8 +150,7 @@ public class TransactionAPIController : ControllerBase
         </div>
     </body>
     </html>";
-                mailService.SendEmail(fromName, fromEmail, toName, toEmail, subject, body,
-                    true); 
+                 BackgroundJob.Enqueue(() => _mailService.SendEmail(fromName, fromEmail, toName, toEmail, subject, body, true));
             }
         }
 
