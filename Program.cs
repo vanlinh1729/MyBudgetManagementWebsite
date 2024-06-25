@@ -115,10 +115,12 @@ try
     app.UseAuthorization();
     // Add Hangfire Dashboard
     app.UseHangfireDashboard();
-    RecurringJob.AddOrUpdate<UserAppService>(service => service.EverydayMailing(), Cron.Daily(23, 17), TimeZoneInfo.Utc);
+    RecurringJob.AddOrUpdate<UserAppService>(service => service.EverydayMailing(), Cron.Daily(0,0 ), TimeZoneInfo.Utc);
 
     app.UseEndpoints(endpoints =>
     {
+        endpoints.MapHangfireDashboard();
+
         endpoints.MapControllerRoute("default",
             "{controller=Login}/{action=Index}");
     });

@@ -30,6 +30,13 @@ public class ValidateTokenMiddleware
     {
         try
         {
+            var endpoint = context.GetEndpoint();
+            if (endpoint?.RequestDelegate.Target?.GetType().FullName.StartsWith("Hangfire.Server") == true)
+            {
+                await _next(context);
+                return;
+            }
+
             if (!context.GetEndpoint().Metadata.Where(x => x.GetType().Name == "Login").Any())
             {
                 await _next(context);
